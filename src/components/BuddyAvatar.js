@@ -1,27 +1,22 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui";
 
-const BuddyAvatar = ({buddy, handleOnMouseEnter, handleOnMouseOut, nameLabel, startSmall }) => {
+const BuddyAvatar = ({buddy, nameLabel, startSmall }) => {
   return (
     <div>
       <img
         src={buddy.image}
         alt={buddy.name}
+        data-id={buddy.id}
         sx={{
           display: "block",
           borderRadius: "50%",
-          animation: startSmall ? "enlargeFadeIn 1s forwards ease" : "",
           width: "168px",
           height: "168px",
           marginBottom: "10px",
+          animation: startSmall ? "enlargeFadeIn 1s forwards ease" : "",
           transformOrigin: startSmall ? "0% 50%" : ""
         }}
-        onMouseEnter={handleOnMouseEnter}
-        onMouseOut={handleOnMouseOut}
-        onBlur={() => {
-          /*go away aria warning*/
-        }}
-        data-id={buddy.id}
       />
       {nameLabel && (
         <span sx={{ display: "block", color: "#0A0912" }}>{buddy.name}</span>

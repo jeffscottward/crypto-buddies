@@ -6,7 +6,12 @@ import Footer from "../components/Footer";
 
 const Details = ({children}) => {
   return (
-    <Box sx={{ fontFamily: "heading", margin: "auto", padding: "40px" }}>
+    <Box
+      sx={{
+        fontFamily: "heading",
+        margin: "auto",
+        padding: "40px"
+      }}>
       <Navigation />
       {children}
       <Footer />

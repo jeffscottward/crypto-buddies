@@ -1,5 +1,4 @@
 /** @jsx jsx */
-import {useState} from "react";
 import { jsx } from "theme-ui";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
@@ -8,10 +7,8 @@ import { Link } from "gatsby";
 import BuddyAvatar from "../components/BuddyAvatar";
 
 const SearchResults = (props) => {
-
   // Similair to BuddyList but hoisted these out
   // to account for div animations
-  const [activeHoverId, setActiveHoverId] = useState("");
   const { loading, error, data } = useQuery(gql(props.query));
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -32,19 +29,7 @@ const SearchResults = (props) => {
         }
       }
     }
-
     return scopedBuddies;
-  };
-
-  const handleOnMouseEnter = e => {
-    if (e.target.tagName === "IMG") {
-      setActiveHoverId(e.target.dataset.id);
-    }
-  };
-  const handleOnMouseOut = e => {
-    if (e.target.tagName === "IMG") {
-      setActiveHoverId(false);
-    }
   };
 
   return (
@@ -53,9 +38,6 @@ const SearchResults = (props) => {
       sx={{ display: "flex", position: "relative", top: "-80px" }}
     >
       <ul
-        className={
-          "SearchResultList " + (activeHoverId ? "hovering-buddies" : "")
-        }
         sx={{
           display: "flex",
           flexWrap: "wrap",
@@ -78,7 +60,6 @@ const SearchResults = (props) => {
                 animationFillMode: "both"
               }}
               key={buddy.id + "-search-result"}
-              className={activeHoverId === buddy.id ? "activeHover" : "fadeOut"}
             >
               <Link
                 to={`/details?buddy=${buddy.id}`}
@@ -92,8 +73,6 @@ const SearchResults = (props) => {
               >
                 <BuddyAvatar
                   buddy={buddy}
-                  handleOnMouseEnter={handleOnMouseEnter}
-                  handleOnMouseOut={handleOnMouseOut}
                   nameLabel={true}
                 />
               </Link>
@@ -107,7 +86,6 @@ const SearchResults = (props) => {
             -webkit-transform: translate3d(0, 100%, 0);
             transform: translate3d(0, 100%, 0);
           }
-
           to {
             opacity: 1;
             -webkit-transform: translate3d(0, 0, 0);

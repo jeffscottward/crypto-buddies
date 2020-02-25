@@ -8,14 +8,8 @@ import SearchResults from "../components/SearchResults";
 
 const SearchArea = ({ prepopulatedBuddy }) => {
   const [activeQuery, setActiveQuery] = useState("");
-  const [textareaHover, setTextareaHover] = useState("");
-
   const handleCloseBtn = () => {setActiveQuery("");};
   const handleSearchQuery = e => {setActiveQuery(e.target.value);};
-
-  const handleTextAreaMouseEnter = () => {setTextareaHover(true)}
-  const handleTextAreaMouseOut = () => {setTextareaHover(false);}
-
   return (
     <div
       className={"search-container"}
@@ -38,8 +32,7 @@ const SearchArea = ({ prepopulatedBuddy }) => {
           <BuddyAvatar
             buddy={prepopulatedBuddy}
             nameLabel={false}
-            startSmall
-          />
+            startSmall />
         </div>
       ) : (
         <div sx={{ width: "112px" }}>
@@ -83,8 +76,6 @@ const SearchArea = ({ prepopulatedBuddy }) => {
           onChange={handleSearchQuery}
           value={prepopulatedBuddy ? prepopulatedBuddy.name : activeQuery}
           disabled={prepopulatedBuddy}
-          onMouseEnter={handleTextAreaMouseEnter}
-          onMouseOut={handleTextAreaMouseOut}
         />
         {activeQuery && (
           <SearchResults
@@ -100,9 +91,12 @@ const SearchArea = ({ prepopulatedBuddy }) => {
             `}
           />
         )}
-
         {prepopulatedBuddy && (
-          <div sx={{ marginLeft: "calc(136px + 52px)", marginTop: "75px" }}>
+          <div
+            sx={{
+              marginLeft: "calc(136px + 52px)",
+              marginTop: "75px"
+            }}>
             <AddBuddyBtn />
           </div>
         )}
@@ -112,7 +106,11 @@ const SearchArea = ({ prepopulatedBuddy }) => {
           position: "absolute",
           transition: "all .2s ease",
           left: !activeQuery ? "100%" : "90%",
-          top: "53px"
+          top: "53px",
+          border: "none",
+          background: "transparent",
+          outline: "none",
+          cursor: "pointer"
         }}
         onClick={handleCloseBtn}
       >
@@ -126,23 +124,20 @@ const SearchArea = ({ prepopulatedBuddy }) => {
         />
       </button>
       <style>{`
-      button {
-        border: none;
-        background: transparent;
-        outline: none;
-        cursor: pointer;
-      }
-      textarea::placeholder {
-        color: ${textareaHover ? "#B1B1B3" : "black"};
-      }
-      @keyframes shiftLeft {
-        from {
-          transform: translateX(-128px);
+        textarea::placeholder {
+          color: black;
         }
-        to {
-          transform: translateX(0px);
+        textarea:hover::placeholder {
+          color: #B1B1B3;
         }
-      }
+        @keyframes shiftLeft {
+          from {
+            transform: translateX(-128px);
+          }
+          to {
+            transform: translateX(0px);
+          }
+        }
     `}</style>
     </div>
   );

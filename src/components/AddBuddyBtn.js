@@ -4,6 +4,7 @@ import { jsx } from "theme-ui";
 const AddBuddyBtn = () => {
   return (
     <button
+      className="add-buddy-btn"
       sx={{
         background: "#BC40C7",
         color: "white",
@@ -13,13 +14,15 @@ const AddBuddyBtn = () => {
         fontWeight: "bold",
         fontSize: "20px",
         fontFamily: "heading",
-        boxShadow: "0px 4px 64px 0px rgba(188, 164, 199, .32)"
+        cursor: "pointer",
+        boxShadow: "0px 4px 64px 0px rgba(188, 164, 199, .32)",
+        outline: "none"
       }}
       onClick={() => alert("ADD_BUDDY_ACTION")}
     >
       Add Buddy
       <style>{`
-        button:active {
+        .add-buddy-btn:active {
           color: #BC40C7;
           background: white;
         }

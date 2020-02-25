@@ -4,11 +4,12 @@ import { Link } from "gatsby";
 
 
 const Navigation = () => (
-  <Box sx={{
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center"
-  }}>
+  <Box
+    sx={{
+      display: "flex",
+      justifyContent: "space-between",
+      alignItems: "center"
+    }}>
     <Link to={`/`}>
       <img
         src="/logo.png"
